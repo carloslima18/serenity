@@ -21,8 +21,7 @@ module Serenity
           images_replacements.each do |r|
             zipfile.replace(r.first, r.last)
           end
-
-          odteruby = OdtEruby.new(XmlReader.new(content))
+          odteruby = OdtEruby.new(XmlReader.new(content.force_encoding('ASCII-8BIT').force_encoding('UTF-8')))
           out = odteruby.evaluate(context)
           out.force_encoding Encoding.default_external
 
